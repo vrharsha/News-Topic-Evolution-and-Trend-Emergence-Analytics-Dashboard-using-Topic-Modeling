@@ -1,0 +1,18 @@
+relationship a6105424-bf1f-4520-aaf4-ce81e490071f
+	joinOnDateBehavior: datePartOnly
+	fromColumn: news_with_topics_50k2.date
+	toColumn: LocalDateTable_4fd81b11-b3f7-4a5b-bbb1-46a3f5861648.Date
+
+relationship 95e44cc7-a665-42ca-9829-99187135c637
+	joinOnDateBehavior: datePartOnly
+	fromColumn: topic_trends2.month
+	toColumn: LocalDateTable_5aad2c5f-c3ff-4387-8021-4c7602e2be6f.Date
+
+relationship AutoDetected_acfea694-a986-432b-96d6-7ed5c9ffc5ef
+	fromColumn: news_with_topics_50k2.topic
+	toColumn: topic_info.Topic
+
+relationship AutoDetected_a1333ab5-f2c4-46d0-99fc-d403f64fb3b7
+	fromColumn: topic_trends2.topic
+	toColumn: topic_info.Topic
+

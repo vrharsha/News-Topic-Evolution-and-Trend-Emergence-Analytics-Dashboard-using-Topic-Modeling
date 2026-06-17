@@ -1,0 +1,23 @@
+model Model
+	culture: en-IN
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-IN
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBI_QueryOrder = ["news_with_topics_50k2","topic_trends2","topic_info"]
+
+annotation PBI_ProTooling = ["DevMode"]
+
+ref table news_with_topics_50k2
+ref table DateTableTemplate_98391935-19e5-443a-9db4-f0debdad9d0a
+ref table LocalDateTable_4fd81b11-b3f7-4a5b-bbb1-46a3f5861648
+ref table topic_trends2
+ref table LocalDateTable_5aad2c5f-c3ff-4387-8021-4c7602e2be6f
+ref table topic_info
+
+ref cultureInfo en-IN
+

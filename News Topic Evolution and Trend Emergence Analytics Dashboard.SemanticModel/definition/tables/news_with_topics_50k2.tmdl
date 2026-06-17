@@ -1,0 +1,80 @@
+table news_with_topics_50k2
+	lineageTag: 3ee96a72-70a3-4836-87f1-8aaa7ff9c0e5
+
+	column headline
+		dataType: string
+		lineageTag: d0b13acd-8153-44d8-9a39-27b6685a880f
+		summarizeBy: none
+		sourceColumn: headline
+
+		annotation SummarizationSetBy = Automatic
+
+	column short_description
+		dataType: string
+		lineageTag: 3e4b9d49-b01e-4e75-b08e-4f4fc966dad7
+		summarizeBy: none
+		sourceColumn: short_description
+
+		annotation SummarizationSetBy = Automatic
+
+	column category
+		dataType: string
+		lineageTag: 7c05490d-a0bf-43a9-90b8-a152367de182
+		summarizeBy: none
+		sourceColumn: category
+
+		annotation SummarizationSetBy = Automatic
+
+	column date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: c8579b77-bb5f-4eaa-bf4e-f38b3cdd8244
+		summarizeBy: none
+		sourceColumn: date
+
+		variation Variation
+			isDefault
+			relationship: a6105424-bf1f-4520-aaf4-ce81e490071f
+			defaultHierarchy: LocalDateTable_4fd81b11-b3f7-4a5b-bbb1-46a3f5861648.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column text
+		dataType: string
+		lineageTag: 25c1e36e-8b76-4cea-95c1-c46604b871fe
+		summarizeBy: none
+		sourceColumn: text
+
+		annotation SummarizationSetBy = Automatic
+
+	column clean_text
+		dataType: string
+		lineageTag: 75527962-26ee-40dd-909a-efc0db95d1c0
+		summarizeBy: none
+		sourceColumn: clean_text
+
+		annotation SummarizationSetBy = Automatic
+
+	column topic
+		dataType: int64
+		formatString: 0
+		lineageTag: 757f0b61-6bc4-4e45-a6ed-b2e0780952a5
+		summarizeBy: none
+		sourceColumn: topic
+
+		annotation SummarizationSetBy = Automatic
+
+	partition news_with_topics_50k2 = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(File.Contents("C:\Users\harsh\OneDrive\Desktop\GradTwin Final Project\news_with_topics_50k2.csv"),[Delimiter=",", Columns=7, Encoding=65001, QuoteStyle=QuoteStyle.None]),
+				    #"Promoted Headers" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"headline", type text}, {"short_description", type text}, {"category", type text}, {"date", type date}, {"text", type text}, {"clean_text", type text}, {"topic", Int64.Type}})
+				in
+				    #"Changed Type"
+
+	annotation PBI_ResultType = Table
+
